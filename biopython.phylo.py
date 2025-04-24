@@ -7,10 +7,12 @@ import tempfile
 import argparse
 
 parser = argparse.ArgumentParser(description='Make a phylo SVG')
-parser.add_argument('--distance_calculator', type = str, help = '', default = 'blastn')
-parser.add_argument('--fasta_file', type = str, help = 'A fasta file that you want a phylogeny of', required = True)
-parser.add_argument('--output_svg', type = str, help = 'output SVG file`')
-parser.add_argument('--title', type = str, help = '')
+required = parser.add_argument_group('required arguments')
+optional = parser.add_argument_group('optional arguments')
+optional.add_argument('--distance_calculator', default = 'blastn', help = 'https://homolog.us/Biopython/Bio.Phylo.TreeConstruction.DistanceCalculator.html', required = False)
+required.add_argument('--fasta_file', type = str, help = 'A fasta file that you want a phylogeny of', required = True)
+required.add_argument('--output_svg', type = str, help = 'output SVG file`')
+optional.add_argument('--title', type = str, help = '')
 args = parser.parse_args()
 
 # made with help from Grok and Google Gemini
